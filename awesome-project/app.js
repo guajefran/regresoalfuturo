@@ -12,6 +12,7 @@ const passport      = require("passport");
 const LocalStrategy = require("passport-local").Strategy;
 const flash = require("connect-flash");
 const FbStrategy = require('passport-facebook').Strategy;
+const GoogleStrategy = require("passport-google-oauth").OAuth2Strategy;
 
 
 mongoose.connect('mongodb://localhost/awesome-project');
@@ -21,6 +22,7 @@ const app = express();
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
+
 var dotenv = require ("dotenv").load()
 
 app.use(session({
@@ -76,6 +78,8 @@ const index = require('./routes/index');
 app.use('/', index);
 
 // catch 404 and forward to error handler
+
+
 app.use((req, res, next) => {
   const err = new Error('Not Found');
   err.status = 404;
@@ -93,6 +97,8 @@ app.use((err, req, res, next) => {
   res.render('error');
 });
 
+
+//FACEBOOK.........
 passport.use(new FbStrategy({
   clientID: process.env.FACEBOOK_ID,
   clientSecret: process.env.FACEBOOK_SECRET,
@@ -114,6 +120,36 @@ passport.use(new FbStrategy({
    }
   });
 }));
+
+//GOOGLE +
+
+passport.serializeUser((user, next) => {
+  next(null, user);
+});
+passport.deserializeUser((user, next) => {
+  next(null, user);
+});
+passport.use(new GoogleStrategy({
+  clientID: "622809649001-u02bh1une2r94t0cqaem559v2j3ammj1.apps.googleusercontent.com",
+  clientSecret: "BpkPdWwQi0NQvUfoWzmhwEYj",
+  callbackURL: "http://localhost:3000/auth/google/callback"
+}, (accessToken, refreshToken, profile, done) => {
+  User.findOne({ googleID: profile.id }, (err, user) => {
+    if (user === null){
+      var newUser = new User({
+        username: profile.emails[0].value,
+        googleID: profile.id
+      });
+      newUser.save((err) => {
+        if (err) { return done(err);}
+        return done(null, newUser);
+      });
+    } else {
+       done(null, user);
+    }
+  });
+}));
+
 
 
 module.exports = app;
