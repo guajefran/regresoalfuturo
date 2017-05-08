@@ -15,6 +15,10 @@ authRoutes.get("/private-page", ensureLogin.ensureLoggedIn(), (req, res) => {
   res.render("private", { user: req.user });
 });
 
+authRoutes.get("/signup", (req, res, next) => {
+  res.render("auth/signup");
+});
+
 
 authRoutes.get("/login", (req, res, next) => {
   res.render("auth/login");
