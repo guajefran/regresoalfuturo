@@ -1,3 +1,4 @@
+
 const express      = require('express');
 const path         = require('path');
 const favicon      = require('serve-favicon');
@@ -18,10 +19,9 @@ const User               = require('./models/user');
 mongoose.connect('mongodb://localhost/awesome-project');
 
 const app = express();
-
 // view engine setup
-app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'ejs');
+app.set('views', path.join(__dirname, 'views'))
+app.set('view engine', 'ejs')
 
 var dotenv = require ("dotenv").load()
 app.use(logger('dev'));
@@ -48,11 +48,13 @@ app.use(session({
 }));
 
 // NEW
+
 passport.serializeUser((user, cb) => {
-  cb(null, user.id);
-});
+  cb(null, user.id)
+})
 
 passport.deserializeUser((id, cb) => {
+
   User.findById(id, (err, user) => {
     if (err) { return cb(err); }
     cb(null, user);
@@ -104,37 +106,39 @@ app.locals.title = 'Express - Generated with IronGenerator';
 passport.use('local-login', new LocalStrategy((username, password, next) => {
   User.findOne({ username }, (err, user) => {
     if (err) {
-      return next(err);
+      return next(err)
     }
     if (!user) {
-      return next(null, false, { message: "Incorrect username" });
+      return next(null, false, { message: "Incorrect username" })
     }
     if (!bcrypt.compareSync(password, user.password)) {
-      return next(null, false, { message: "Incorrect password" });
+      return next(null, false, { message: "Incorrect password" })
     }
+
 
     return next(null, user);
   });
 }));
 
+
 // catch 404 and forward to error handler
 
 app.use((req, res, next) => {
-  const err = new Error('Not Found');
-  err.status = 404;
-  next(err);
-});
+  const err = new Error('Not Found')
+  err.status = 404
+  next(err)
+})
 
 // error handler
 app.use((err, req, res, next) => {
   // set locals, only providing error in development
-  res.locals.message = err.message;
-  res.locals.error = req.app.get('env') === 'development' ? err : {};
+  res.locals.message = err.message
+  res.locals.error = req.app.get('env') === 'development' ? err : {}
 
   // render the error page
-  res.status(err.status || 500);
-  res.render('error');
-});
+  res.status(err.status || 500)
+  res.render('error')
+})
 
 passport.serializeUser((user, next) => {
   next(null, user);
@@ -150,32 +154,34 @@ passport.use(new FbStrategy({
   callbackURL: "http://localhost:3000/auth/facebook/callback"
 }, (accessToken, refreshToken, profile, done) => {
   User.findOne({ username: profile._json.name }, (err, user) => {
-  if (err) { return done(err); }
+  if (err) { return done(err) }
   if (user === null){
     var newUser = new User({
       username: profile._json.name,
       facebookID: profile._json.id
-    });
+    })
     newUser.save((err) => {
-      if (err) {return done(err);}
-      return done(null, newUser);
-    });
+      if (err) {return done(err)}
+      return done(null, newUser)
+    })
   } else {
-   done(null, user);
+   done(null, user)
    }
+
   });
 }));
+
 //GOOGLE +
 
 passport.serializeUser((user, next) => {
-  next(null, user);
-});
+  next(null, user)
+})
 passport.deserializeUser((user, next) => {
-  next(null, user);
-});
+  next(null, user)
+})
 passport.use(new GoogleStrategy({
-  clientID: "622809649001-u02bh1une2r94t0cqaem559v2j3ammj1.apps.googleusercontent.com",
-  clientSecret: "BpkPdWwQi0NQvUfoWzmhwEYj",
+  clientID: ENV['GOOGLE_ID'],
+  clientSecret: ENV['GOOGLE_SECRET'],
   callbackURL: "http://localhost:3000/auth/google/callback"
 }, (accessToken, refreshToken, profile, done) => {
   User.findOne({ googleID: profile.id }, (err, user) => {
@@ -183,17 +189,17 @@ passport.use(new GoogleStrategy({
       var newUser = new User({
         username: profile.emails[0].value,
         googleID: profile.id
-      });
+      })
       newUser.save((err) => {
-        if (err) { return done(err);}
-        return done(null, newUser);
-      });
+        if (err) { return done(err)}
+        return done(null, newUser)
+      })
     } else {
-       done(null, user);
+       done(null, user)
     }
-  });
-}));
+  })
+}))
 
 
 
-module.exports = app;
+module.exports = app
