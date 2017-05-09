@@ -130,8 +130,8 @@ passport.deserializeUser((user, next) => {
   next(null, user)
 })
 passport.use(new GoogleStrategy({
-  clientID: ENV['GOOGLE_ID'],
-  clientSecret: ENV['GOOGLE_SECRET'],
+  clientID: process.env.GOOGLE_ID,
+  clientSecret: process.env.GOOGLE_SECRET,
   callbackURL: "http://localhost:3000/auth/google/callback"
 }, (accessToken, refreshToken, profile, done) => {
   User.findOne({ googleID: profile.id }, (err, user) => {
