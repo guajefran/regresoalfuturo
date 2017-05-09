@@ -1,4 +1,3 @@
-
 const express      = require('express');
 const path         = require('path');
 const favicon      = require('serve-favicon');
@@ -16,9 +15,9 @@ const FbStrategy = require('passport-facebook').Strategy;
 const GoogleStrategy = require("passport-google-oauth").OAuth2Strategy;
 const User               = require('./models/user');
 
+const app = express();
 mongoose.connect('mongodb://localhost/awesome-project');
 
-const app = express();
 // view engine setup
 app.set('views', path.join(__dirname, 'views'))
 app.set('view engine', 'ejs')
@@ -31,6 +30,11 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(layouts);
 
+app.use(session({
+  secret: 'ironfundingdev',
+  resave: false,
+  saveUninitialized: true,
+}));
 app.use(passport.initialize());
 app.use(passport.session());
 
@@ -41,11 +45,6 @@ const index = require('./routes/index');
 app.use('/', index);
 
 // signup
-app.use(session({
-  secret: 'ironfundingdev',
-  resave: false,
-  saveUninitialized: true,
-}));
 
 // NEW
 
@@ -140,14 +139,16 @@ app.use((err, req, res, next) => {
   res.render('error')
 })
 
-passport.serializeUser((user, next) => {
-  next(null, user);
-});
-passport.deserializeUser((user, next) => {
-  next(null, user);
-});
+// passport.serializeUser((user, next) => {
+//   next(null, user);
+// });
+// passport.deserializeUser((user, next) => {
+//   next(null, user);
+// });
 
 //FACEBOOK.........
+console.log(process.env.FACEBOOK_ID);
+console.log(process.env.FACEBOOK_SECRET);
 passport.use(new FbStrategy({
   clientID: process.env.FACEBOOK_ID,
   clientSecret: process.env.FACEBOOK_SECRET,
@@ -173,15 +174,9 @@ passport.use(new FbStrategy({
 
 //GOOGLE +
 
-passport.serializeUser((user, next) => {
-  next(null, user)
-})
-passport.deserializeUser((user, next) => {
-  next(null, user)
-})
 passport.use(new GoogleStrategy({
-  clientID: ENV['GOOGLE_ID'],
-  clientSecret: ENV['GOOGLE_SECRET'],
+  clientID: process.env['GOOGLE_ID'],
+  clientSecret: process.env['GOOGLE_SECRET'],
   callbackURL: "http://localhost:3000/auth/google/callback"
 }, (accessToken, refreshToken, profile, done) => {
   User.findOne({ googleID: profile.id }, (err, user) => {
