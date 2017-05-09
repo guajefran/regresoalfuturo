@@ -1,47 +1,109 @@
-const express      = require('express')
-const path         = require('path')
-const favicon      = require('serve-favicon')
-const logger       = require('morgan')
-const cookieParser = require('cookie-parser')
-const bodyParser   = require('body-parser')
-const layouts      = require('express-ejs-layouts')
-const mongoose     = require('mongoose')
-const session       = require("express-session")
-const bcrypt        = require("bcrypt")
-const passport      = require("passport")
-const LocalStrategy = require("passport-local").Strategy
-const flash = require("connect-flash")
-const FbStrategy = require('passport-facebook').Strategy
-const GoogleStrategy = require("passport-google-oauth").OAuth2Strategy
 
+const express      = require('express');
+const path         = require('path');
+const favicon      = require('serve-favicon');
+const logger       = require('morgan');
+const cookieParser = require('cookie-parser');
+const bodyParser   = require('body-parser');
+const layouts      = require('express-ejs-layouts');
+const mongoose     = require('mongoose');
+const session       = require("express-session");
+const bcrypt        = require("bcrypt");
+const passport      = require("passport");
+const LocalStrategy = require("passport-local").Strategy;
+const flash = require("connect-flash");
+const FbStrategy = require('passport-facebook').Strategy;
+const GoogleStrategy = require("passport-google-oauth").OAuth2Strategy;
+const User               = require('./models/user');
 
-mongoose.connect('mongodb://localhost/awesome-project')
+mongoose.connect('mongodb://localhost/awesome-project');
 
-const app = express()
-
+const app = express();
 // view engine setup
 app.set('views', path.join(__dirname, 'views'))
 app.set('view engine', 'ejs')
 
 var dotenv = require ("dotenv").load()
+app.use(logger('dev'));
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(cookieParser());
+app.use(express.static(path.join(__dirname, 'public')));
+app.use(layouts);
 
+app.use(passport.initialize());
+app.use(passport.session());
+
+const authRoutes = require("./routes/auth-routes");
+app.use('/', authRoutes);
+
+const index = require('./routes/index');
+app.use('/', index);
+
+// signup
 app.use(session({
-  secret: "our-passport-local-strategy-app",
-  resave: true,
-  saveUninitialized: true
-}))
+  secret: 'ironfundingdev',
+  resave: false,
+  saveUninitialized: true,
+}));
+
+// NEW
+
 passport.serializeUser((user, cb) => {
   cb(null, user.id)
 })
 
 passport.deserializeUser((id, cb) => {
-  User.findOne({ "_id": id }, (err, user) => {
-    if (err) { return cb(err) }
-    cb(null, user)
-  })
-})
 
-passport.use(new LocalStrategy((username, password, next) => {
+  User.findById(id, (err, user) => {
+    if (err) { return cb(err); }
+    cb(null, user);
+  });
+});
+
+// Signing Up
+passport.use('local-signup', new LocalStrategy(
+  { passReqToCallback: true },
+  (req, username, password, next) => {
+    // To avoid race conditions
+    process.nextTick(() => {
+        User.findOne({
+            'username': username
+        }, (err, user) => {
+            if (err){ return next(err); }
+
+            if (user) {
+                return next(null, false);
+            } else {
+                // Destructure the body
+                const { username, email, password } = req.body;
+                const hashPass = bcrypt.hashSync(password, bcrypt.genSaltSync(8), null);
+                const newUser = new User({
+                  username,
+                  email,
+                  password: hashPass
+                });
+
+                newUser.save((err) => {
+                    if (err){ next(err); }
+                    return next(null, newUser);
+                });
+            }
+        });
+    });
+}));
+// NEW
+
+
+// default value for title local
+app.locals.title = 'Express - Generated with IronGenerator';
+
+// uncomment after placing your favicon in /public
+//app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
+
+
+
+passport.use('local-login', new LocalStrategy((username, password, next) => {
   User.findOne({ username }, (err, user) => {
     if (err) {
       return next(err)
@@ -53,32 +115,13 @@ passport.use(new LocalStrategy((username, password, next) => {
       return next(null, false, { message: "Incorrect password" })
     }
 
-    return next(null, user)
-  })
-}))
-app.use(passport.initialize())
-app.use(passport.session())
-// Routes
-const authRoutes = require("./routes/auth-routes")
-app.use('/', authRoutes)
 
-// default value for title local
-app.locals.title = 'Express - Generated with IronGenerator'
+    return next(null, user);
+  });
+}));
 
-// uncomment after placing your favicon in /public
-//app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')))
-app.use(logger('dev'))
-app.use(bodyParser.json())
-app.use(bodyParser.urlencoded({ extended: false }))
-app.use(cookieParser())
-app.use(express.static(path.join(__dirname, 'public')))
-app.use(layouts)
-
-const index = require('./routes/index')
-app.use('/', index)
 
 // catch 404 and forward to error handler
-
 
 app.use((req, res, next) => {
   const err = new Error('Not Found')
@@ -97,6 +140,12 @@ app.use((err, req, res, next) => {
   res.render('error')
 })
 
+passport.serializeUser((user, next) => {
+  next(null, user);
+});
+passport.deserializeUser((user, next) => {
+  next(null, user);
+});
 
 //FACEBOOK.........
 passport.use(new FbStrategy({
@@ -118,8 +167,9 @@ passport.use(new FbStrategy({
   } else {
    done(null, user)
    }
-  })
-}))
+
+  });
+}));
 
 //GOOGLE +
 
