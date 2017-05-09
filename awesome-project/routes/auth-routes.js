@@ -19,20 +19,33 @@ authRoutes.get("/signup", (req, res, next) => {
   res.render("auth/signup");
 });
 
-
-authRoutes.get("/login", (req, res, next) => {
-  res.render("auth/login");
-});
-
-authRoutes.post("/login", passport.authenticate("local", {
-  successRedirect: "/",
-  failureRedirect: "/login",
-  failureFlash: false,
-  passReqToCallback: true
+authRoutes.post('/signup', passport.authenticate('local-signup', {
+  successRedirect : '/',
+  failureRedirect : '/signup'
 }));
 
+authRoutes.get('/login', (req, res) => {
+    res.render('auth/login');
+});
+
+authRoutes.post('/login', passport.authenticate('local-login', {
+  successRedirect : '/',
+  failureRedirect : '/login'
+}));
+
+// authRoutes.get("/login", (req, res, next) => {
+//   res.render("auth/login");
+// });
+//
+// authRoutes.post("/login", passport.authenticate("local", {
+//   successRedirect: "/",
+//   failureRedirect: "/login",
+//   failureFlash: false,
+//   passReqToCallback: true
+// }));
+
 authRoutes.get("/logout", (req, res) => {
-  req.logout();
+  req.logout("/login");
   res.redirect("/login");
 });
 
@@ -49,8 +62,8 @@ authRoutes.get("/auth/google", passport.authenticate("google", {
 }));
 
 authRoutes.get("/auth/google/callback", passport.authenticate("google", {
-  failureRedirect: "/",
-  successRedirect: "/private-page"
+  failureRedirect: "/signup",
+  successRedirect: "/"
 }));
 /////////
 

@@ -6,6 +6,12 @@
     <link rel="stylesheet" href="/stylesheets/style.css">
   </head>
   <body>
-    <%- body %>
+    <li><a href="/login">Login</a></li>
+    <li><a href="/signup">Signup</a></li>
+    <!-- <li><a href="#">Profile</a></li> -->
+    <%- body -%>
+    <form action="/logout" method="POST">
+      <button class="btn btn-link btn-logout" type="submit">Logout</a>
+      </form>
   </body>
 </html>
