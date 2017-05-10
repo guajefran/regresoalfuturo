@@ -11,7 +11,7 @@ a {
   color: #00B7FF;
 }
 .corps{
-  background-image: url(/images/background1.jpg);
+  background-image: url(/images/bengala.jpg);
   background-position: center center;
   background-repeat: no-repeat;
   background-attachment: fixed;
@@ -19,7 +19,7 @@ a {
   background-color:#000;
   width: 100%;
   height: 100%;
-  padding-top: 100px;
+  padding-top: 50px;
 }
 
 .boxlogin{
