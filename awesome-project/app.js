@@ -1,3 +1,4 @@
+
 const express      = require('express');
 const path         = require('path');
 const favicon      = require('serve-favicon');
@@ -15,9 +16,9 @@ const FbStrategy = require('passport-facebook').Strategy;
 const GoogleStrategy = require("passport-google-oauth").OAuth2Strategy;
 const User               = require('./models/user');
 
+const app = express();
 mongoose.connect('mongodb://localhost/awesome-project');
 
-const app = express();
 // view engine setup
 app.set('views', path.join(__dirname, 'views'))
 app.set('view engine', 'ejs')
@@ -43,7 +44,7 @@ app.use('/', index);
 app.use(session({
   secret: 'ironfundingdev',
   resave: false,
-  saveUninitialized: true
+  saveUninitialized: true,
 }));
 
 // NEW
@@ -95,7 +96,7 @@ passport.use('local-signup', new LocalStrategy(
 
 
 // default value for title local
-app.locals.title = 'Express - Generated with IronGenerator';
+app.locals.title = 'ALMANAC - Back to the future';
 
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
@@ -139,12 +140,12 @@ app.use((err, req, res, next) => {
   res.render('error')
 })
 
-passport.serializeUser((user, next) => {
-  next(null, user);
-});
-passport.deserializeUser((user, next) => {
-  next(null, user);
-});
+// passport.serializeUser((user, next) => {
+//   next(null, user);
+// });
+// passport.deserializeUser((user, next) => {
+//   next(null, user);
+// });
 
 //FACEBOOK.........
 passport.use(new FbStrategy({
@@ -172,15 +173,9 @@ passport.use(new FbStrategy({
 
 //GOOGLE +
 
-passport.serializeUser((user, next) => {
-  next(null, user)
-})
-passport.deserializeUser((user, next) => {
-  next(null, user)
-})
 passport.use(new GoogleStrategy({
-  clientID: process.env.GOOGLE_ID,
-  clientSecret: process.env.GOOGLE_SECRET,
+  clientID: process.env['GOOGLE_ID'],
+  clientSecret: process.env['GOOGLE_SECRET'],
   callbackURL: "http://localhost:3000/auth/google/callback"
 }, (accessToken, refreshToken, profile, done) => {
   User.findOne({ googleID: profile.id }, (err, user) => {
