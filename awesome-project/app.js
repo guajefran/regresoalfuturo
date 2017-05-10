@@ -1,51 +1,50 @@
+const express      = require('express')
+const path         = require('path')
+const favicon      = require('serve-favicon')
+const logger       = require('morgan')
+const cookieParser = require('cookie-parser')
+const bodyParser   = require('body-parser')
+const layouts      = require('express-ejs-layouts')
+const mongoose     = require('mongoose')
+const session       = require("express-session")
+const bcrypt        = require("bcrypt")
+const passport      = require("passport")
+const LocalStrategy = require("passport-local").Strategy
+const flash = require("connect-flash")
+const FbStrategy = require('passport-facebook').Strategy
+const GoogleStrategy = require("passport-google-oauth").OAuth2Strategy
+const User               = require('./models/user')
 
-const express      = require('express');
-const path         = require('path');
-const favicon      = require('serve-favicon');
-const logger       = require('morgan');
-const cookieParser = require('cookie-parser');
-const bodyParser   = require('body-parser');
-const layouts      = require('express-ejs-layouts');
-const mongoose     = require('mongoose');
-const session       = require("express-session");
-const bcrypt        = require("bcrypt");
-const passport      = require("passport");
-const LocalStrategy = require("passport-local").Strategy;
-const flash = require("connect-flash");
-const FbStrategy = require('passport-facebook').Strategy;
-const GoogleStrategy = require("passport-google-oauth").OAuth2Strategy;
-const User               = require('./models/user');
-
-const app = express();
-mongoose.connect('mongodb://localhost/awesome-project');
+const app = express()
+mongoose.connect('mongodb://localhost/awesome-project')
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'))
 app.set('view engine', 'ejs')
 
 var dotenv = require ("dotenv").load()
-app.use(logger('dev'));
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
-app.use(layouts);
+app.use(logger('dev'))
+app.use(bodyParser.json())
+app.use(bodyParser.urlencoded({ extended: false }))
+app.use(cookieParser())
+app.use(express.static(path.join(__dirname, 'public')))
+app.use(layouts)
 
-app.use(passport.initialize());
-app.use(passport.session());
+app.use(passport.initialize())
+app.use(passport.session())
 
-const authRoutes = require("./routes/auth-routes");
-app.use('/', authRoutes);
+const authRoutes = require("./routes/auth-routes")
+app.use('/', authRoutes)
 
-const index = require('./routes/index');
-app.use('/', index);
+const index = require('./routes/index')
+app.use('/', index)
 
 // signup
 app.use(session({
   secret: 'ironfundingdev',
   resave: false,
-  saveUninitialized: true,
-}));
+  saveUninitialized: true
+}))
 
 // NEW
 
@@ -56,10 +55,10 @@ passport.serializeUser((user, cb) => {
 passport.deserializeUser((id, cb) => {
 
   User.findById(id, (err, user) => {
-    if (err) { return cb(err); }
-    cb(null, user);
-  });
-});
+    if (err) { return cb(err) }
+    cb(null, user)
+  })
+})
 
 // Signing Up
 passport.use('local-signup', new LocalStrategy(
@@ -67,39 +66,39 @@ passport.use('local-signup', new LocalStrategy(
   (req, username, password, next) => {
     // To avoid race conditions
     process.nextTick(() => {
-        User.findOne({
-            'username': username
-        }, (err, user) => {
-            if (err){ return next(err); }
+      User.findOne({
+        'username': username
+      }, (err, user) => {
+        if (err){ return next(err) }
 
-            if (user) {
-                return next(null, false);
-            } else {
-                // Destructure the body
-                const { username, email, password } = req.body;
-                const hashPass = bcrypt.hashSync(password, bcrypt.genSaltSync(8), null);
-                const newUser = new User({
-                  username,
-                  email,
-                  password: hashPass
-                });
+        if (user) {
+          return next(null, false)
+        } else {
+          // Destructure the body
+          const { username, email, password } = req.body
+          const hashPass = bcrypt.hashSync(password, bcrypt.genSaltSync(8), null)
+          const newUser = new User({
+            username,
+            email,
+            password: hashPass
+          })
 
-                newUser.save((err) => {
-                    if (err){ next(err); }
-                    return next(null, newUser);
-                });
-            }
-        });
-    });
-}));
+          newUser.save((err) => {
+            if (err){ next(err) }
+            return next(null, newUser)
+          })
+        }
+      })
+    })
+  }))
 // NEW
 
 
 // default value for title local
-app.locals.title = 'ALMANAC - Back to the future';
+app.locals.title = 'ALMANAC - Back to the future'
 
 // uncomment after placing your favicon in /public
-//app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
+//app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')))
 
 
 
@@ -116,9 +115,9 @@ passport.use('local-login', new LocalStrategy((username, password, next) => {
     }
 
 
-    return next(null, user);
-  });
-}));
+    return next(null, user)
+  })
+}))
 
 
 // catch 404 and forward to error handler
@@ -141,11 +140,11 @@ app.use((err, req, res, next) => {
 })
 
 // passport.serializeUser((user, next) => {
-//   next(null, user);
-// });
+//   next(null, user)
+// })
 // passport.deserializeUser((user, next) => {
-//   next(null, user);
-// });
+//   next(null, user)
+// })
 
 //FACEBOOK.........
 passport.use(new FbStrategy({
@@ -154,22 +153,19 @@ passport.use(new FbStrategy({
   callbackURL: "http://localhost:3000/auth/facebook/callback"
 }, (accessToken, refreshToken, profile, done) => {
   User.findOne({ username: profile._json.name }, (err, user) => {
-  if (err) { return done(err) }
-  if (user === null){
-    var newUser = new User({
-      username: profile._json.name,
-      facebookID: profile._json.id
-    })
-    newUser.save((err) => {
-      if (err) {return done(err)}
-      return done(null, newUser)
-    })
-  } else {
-   done(null, user)
-   }
-
-  });
-}));
+    if (err) { return done(err) }
+    if (user === null){
+      var newUser = new User({
+        username: profile._json.name,
+        facebookID: profile._json.id
+      })
+      newUser.save((err) => {
+        if (err) {return done(err)}
+        return done(null, newUser)
+      })
+    } else { done(null, user)}
+  })
+}))
 
 //GOOGLE +
 
@@ -189,7 +185,7 @@ passport.use(new GoogleStrategy({
         return done(null, newUser)
       })
     } else {
-       done(null, user)
+      done(null, user)
     }
   })
 }))
