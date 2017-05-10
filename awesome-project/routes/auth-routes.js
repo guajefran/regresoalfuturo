@@ -11,8 +11,9 @@ const bcryptSalt = 10;
 
 const ensureLogin = require("connect-ensure-login");
 
-authRoutes.get("/private-page", ensureLogin.ensureLoggedIn(), (req, res) => {
-  res.render("private", { user: req.user });
+
+authRoutes.get("/matches", ensureLogin.ensureLoggedIn(), (req, res) => {
+  res.render("matches", { user: req.user });
 });
 
 authRoutes.get("/signup", (req, res, next) => {
@@ -29,9 +30,10 @@ authRoutes.get('/login', (req, res) => {
 });
 
 authRoutes.post('/login', passport.authenticate('local-login', {
-  successRedirect : '/',
+  successRedirect : '/matches',
   failureRedirect : '/login'
 }));
+
 
 // authRoutes.get("/login", (req, res, next) => {
 //   res.render("auth/login");
@@ -51,7 +53,7 @@ authRoutes.get("/logout", (req, res) => {
 
 authRoutes.get("/auth/facebook", passport.authenticate("facebook"));
 authRoutes.get("/auth/facebook/callback", passport.authenticate("facebook", {
-  successRedirect: "/private-page",
+  successRedirect: "/matches",
   failureRedirect: "/"
 }));
 
@@ -63,7 +65,7 @@ authRoutes.get("/auth/google", passport.authenticate("google", {
 
 authRoutes.get("/auth/google/callback", passport.authenticate("google", {
   failureRedirect: "/signup",
-  successRedirect: "/"
+  successRedirect: "/matches"
 }));
 /////////
 

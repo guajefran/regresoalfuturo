@@ -10,6 +10,10 @@ body {
 a {
   color: #00B7FF;
 }
+h1{
+  color: #fff;
+  text-align: center;
+}
 .corps{
   background-image: url(/images/bengala.jpg);
   background-position: center center;

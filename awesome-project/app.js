@@ -14,8 +14,15 @@ const flash = require("connect-flash");
 const FbStrategy = require('passport-facebook').Strategy;
 const GoogleStrategy = require("passport-google-oauth").OAuth2Strategy;
 const User               = require('./models/user');
+const index = require('./routes/index');
+const authRoutes = require("./routes/auth-routes");
+
+const matchRoute = require('./routes/matchRoutes');
+const teamRoute = require('./routes/teamRoutes');
 
 const app = express();
+
+
 mongoose.connect('mongodb://localhost/awesome-project');
 
 // view engine setup
@@ -29,7 +36,6 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(layouts);
-
 app.use(session({
   secret: 'ironfundingdev',
   resave: false,
@@ -37,14 +43,11 @@ app.use(session({
 }));
 app.use(passport.initialize());
 app.use(passport.session());
-
-const authRoutes = require("./routes/auth-routes");
 app.use('/', authRoutes);
-
-const index = require('./routes/index');
 app.use('/', index);
+app.use('/team', teamRoute);
+app.use('/match', matchRoute);
 
-// signup
 
 // NEW
 
@@ -147,8 +150,6 @@ app.use((err, req, res, next) => {
 // });
 
 //FACEBOOK.........
-console.log(process.env.FACEBOOK_ID);
-console.log(process.env.FACEBOOK_SECRET);
 passport.use(new FbStrategy({
   clientID: process.env.FACEBOOK_ID,
   clientSecret: process.env.FACEBOOK_SECRET,
