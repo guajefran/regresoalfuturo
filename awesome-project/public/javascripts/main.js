@@ -59,7 +59,25 @@ $(function() {
         })
       })
   }
+  API.prototype.getNextMatches = function(){
+    $.ajax({
+      context: this,
+      url: '/match/nextMatches'
+    })
+      .done(function(data){
+        var matches = data
+        var matchesDiv  = $('table')
+        matches.forEach(function(match){
+          var matchFrame = $('<tr>')
+          matchFrame.append($('<td>').text(match.homeTeamName))
+          matchFrame.append($('<td>').text(match.awayTeamName))
+          matchFrame.append($('<td>').text(match.date))
+          matchesDiv.append(matchFrame)
+        })
+      })
+  }
   var api = new API()
+  api.getNextMatches()
   // api.getTeams()
   // api.getMatches()
 })
