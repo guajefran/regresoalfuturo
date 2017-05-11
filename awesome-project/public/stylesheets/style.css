@@ -3,7 +3,7 @@ html{
 }
 
 body {
-  font: 18px "Lucida Grande", Helvetica, Arial, sans-serif;
+  font: 18px "Comic sans MS", Helvetica, Arial, sans-serif;
   margin: 0;
   height: 100%;
 }
@@ -16,8 +16,33 @@ h1{
   color: #fff;
   text-align: center;
 }
+
+
+.login{
+  color: #000;
+  font-size: 16px;
+  float: right;
+}
+
+.fbbox{
+
+  color: black;
+}
+.googlebox{
+
+  color: black;
+}
+.boxlogos{
+  width: 40px;
+  height: 40px;
+
+}
+/*#lista ul li {
+display:inline;
+list-style: none;
+}*/
 .corps{
-  background-image: url(/images/bengala.jpg);
+  background-image: url(/images/background1.jpg);
   background-position: center center;
   background-repeat: no-repeat;
   background-attachment: fixed;
@@ -31,7 +56,7 @@ h1{
 .boxlogin{
   border: 2px solid #000 ;
   width: 400px;
-  height: 360px;
+  height: 380px;
   display: block;
   border-radius: 10%;
   text-align: center;
@@ -66,7 +91,7 @@ h1{
   width: 70%;
 }
 .boxsignup{
-  height: 550px;
+  height: 570px;
 }
 
 @media(max-width: 500px) {
