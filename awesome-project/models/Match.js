@@ -4,6 +4,8 @@ const Schema   = mongoose.Schema;
 const matchSchema = new Schema({
   homeTeam: Schema.Types.ObjectId,
   awayTeam: Schema.Types.ObjectId,
+  homeTeamName: String,
+  awayTeamName: String,
   date: Date,
   status: String,
   matchDay: Number,
