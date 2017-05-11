@@ -21,7 +21,7 @@ authRoutes.get("/signup", (req, res, next) => {
 });
 
 authRoutes.post('/signup', passport.authenticate('local-signup', {
-  successRedirect : '/',
+  successRedirect : '/login',
   failureRedirect : '/signup'
 }));
 

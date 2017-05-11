@@ -21,8 +21,6 @@ const matchRoute = require('./routes/matchRoutes');
 const teamRoute = require('./routes/teamRoutes');
 
 const app = express();
-
-
 mongoose.connect('mongodb://localhost/awesome-project');
 
 // view engine setup
@@ -41,13 +39,11 @@ app.use(session({
   resave: false,
   saveUninitialized: true,
 }));
+
 app.use(passport.initialize());
 app.use(passport.session());
-app.use('/', authRoutes);
-app.use('/', index);
-app.use('/team', teamRoute);
-app.use('/match', matchRoute);
 
+// signup
 
 // NEW
 
@@ -68,10 +64,12 @@ passport.use('local-signup', new LocalStrategy(
   { passReqToCallback: true },
   (req, username, password, next) => {
     // To avoid race conditions
+    console.log('llega');
     process.nextTick(() => {
         User.findOne({
             'username': username
         }, (err, user) => {
+            console.log(err);
             if (err){ return next(err); }
 
             if (user) {
@@ -106,7 +104,9 @@ app.locals.title = 'ALMANAC - Back to the future';
 
 
 passport.use('local-login', new LocalStrategy((username, password, next) => {
+
   User.findOne({ username }, (err, user) => {
+
     if (err) {
       return next(err)
     }
@@ -121,26 +121,6 @@ passport.use('local-login', new LocalStrategy((username, password, next) => {
     return next(null, user);
   });
 }));
-
-
-// catch 404 and forward to error handler
-
-app.use((req, res, next) => {
-  const err = new Error('Not Found')
-  err.status = 404
-  next(err)
-})
-
-// error handler
-app.use((err, req, res, next) => {
-  // set locals, only providing error in development
-  res.locals.message = err.message
-  res.locals.error = req.app.get('env') === 'development' ? err : {}
-
-  // render the error page
-  res.status(err.status || 500)
-  res.render('error')
-})
 
 // passport.serializeUser((user, next) => {
 //   next(null, user);
@@ -196,6 +176,28 @@ passport.use(new GoogleStrategy({
   })
 }))
 
+app.use('/', authRoutes);
+app.use('/', index);
+app.use('/team', teamRoute);
+app.use('/match', matchRoute);
 
+// catch 404 and forward to error handler
+
+app.use((req, res, next) => {
+  const err = new Error('Not Found')
+  err.status = 404
+  next(err)
+})
+
+// error handler
+app.use((err, req, res, next) => {
+  // set locals, only providing error in development
+  res.locals.message = err.message
+  res.locals.error = req.app.get('env') === 'development' ? err : {}
+
+  // render the error page
+  res.status(err.status || 500)
+  res.render('error')
+})
 
 module.exports = app

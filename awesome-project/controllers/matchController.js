@@ -1,4 +1,4 @@
-var match = require('../models/match.js');
+var Match = require('../models/Match.js');
 
 /**
  * matchController.js
@@ -11,7 +11,7 @@ module.exports = {
      * matchController.list()
      */
     list: function (req, res) {
-        match.find(function (err, matches) {
+        Match.find({}, function (err, matches) {
             if (err) {
                 return res.status(500).json({
                     message: 'Error when getting match.',
@@ -27,7 +27,7 @@ module.exports = {
      */
     show: function (req, res) {
         var id = req.params.id;
-        match.findOne({_id: id}, function (err, match) {
+        Match.findOne({_id: id}, function (err, match) {
             if (err) {
                 return res.status(500).json({
                     message: 'Error when getting match.',
@@ -47,18 +47,17 @@ module.exports = {
      * matchController.create()
      */
     create: function (req, res) {
-        var match = new match({			matchDoor : req.body.matchDoor,			color : req.body.color
-        });
+      var Match = new Match({      });
 
-        match.save(function (err, match) {
-            if (err) {
-                return res.status(500).json({
-                    message: 'Error when creating match',
-                    error: err
-                });
-            }
-            return res.status(201).json(match);
-        });
+      match.save(function (err, match) {
+          if (err) {
+              return res.status(500).json({
+                  message: 'Error when creating match',
+                  error: err
+              });
+          }
+          return res.status(201).json(match);
+      });
     },
 
     /**
@@ -66,7 +65,7 @@ module.exports = {
      */
     update: function (req, res) {
         var id = req.params.id;
-        match.findOne({_id: id}, function (err, match) {
+        Match.findOne({_id: id}, function (err, match) {
             if (err) {
                 return res.status(500).json({
                     message: 'Error when getting match',
@@ -78,9 +77,7 @@ module.exports = {
                     message: 'No such match'
                 });
             }
-
-            match.matchDoor = req.body.matchDoor ? req.body.matchDoor : match.matchDoor;			match.color = req.body.color ? req.body.color : match.color;
-            match.save(function (err, match) {
+            Match.save(function (err, match) {
                 if (err) {
                     return res.status(500).json({
                         message: 'Error when updating match.',
@@ -98,7 +95,7 @@ module.exports = {
      */
     remove: function (req, res) {
         var id = req.params.id;
-        match.findByIdAndRemove(id, function (err, match) {
+        Match.findByIdAndRemove(id, function (err, match) {
             if (err) {
                 return res.status(500).json({
                     message: 'Error when deleting the match.',

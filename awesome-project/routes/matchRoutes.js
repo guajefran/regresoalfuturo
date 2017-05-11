@@ -10,11 +10,4 @@ router.post('/', matchController.create);
 router.get('/:id', matchController.show);
 
 
-
-
-router.put('/:id', matchController.update);
-
-
-router.delete('/:id', matchController.remove);
-
 module.exports = router;

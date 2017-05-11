@@ -1,4 +1,4 @@
-var team = require('../models/team.js');
+var Team = require('../models/Team.js');
 
 /**
  * teamController.js
@@ -11,7 +11,7 @@ module.exports = {
      * teamController.list()
      */
     list: function (req, res) {
-        team.find(function (err, teams) {
+        Team.find(function (err, teams) {
             if (err) {
                 return res.status(500).json({
                     message: 'Error when getting team.',
@@ -27,7 +27,7 @@ module.exports = {
      */
     show: function (req, res) {
         var id = req.params.id;
-        team.findOne({_id: id}, function (err, team) {
+        Team.findOne({_id: id}, function (err, team) {
             if (err) {
                 return res.status(500).json({
                     message: 'Error when getting team.',
@@ -47,10 +47,9 @@ module.exports = {
      * teamController.create()
      */
     create: function (req, res) {
-        var team = new team({			teamDoor : req.body.teamDoor,			color : req.body.color
-        });
+        var team = new team({        });
 
-        team.save(function (err, team) {
+        Team.save(function (err, team) {
             if (err) {
                 return res.status(500).json({
                     message: 'Error when creating team',
@@ -66,7 +65,7 @@ module.exports = {
      */
     update: function (req, res) {
         var id = req.params.id;
-        team.findOne({_id: id}, function (err, team) {
+        Team.findOne({_id: id}, function (err, team) {
             if (err) {
                 return res.status(500).json({
                     message: 'Error when getting team',
@@ -78,9 +77,7 @@ module.exports = {
                     message: 'No such team'
                 });
             }
-
-            team.teamDoor = req.body.teamDoor ? req.body.teamDoor : team.teamDoor;			team.color = req.body.color ? req.body.color : team.color;
-            team.save(function (err, team) {
+            Team.save(function (err, team) {
                 if (err) {
                     return res.status(500).json({
                         message: 'Error when updating team.',
