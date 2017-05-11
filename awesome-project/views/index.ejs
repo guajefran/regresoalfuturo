@@ -1,12 +1,12 @@
-<html>
-  <head>
-    <meta charset="utf-8">
-    <title>Almanac</title>
-  </head>
-  <body>
-    <h1>1ª División</h1>
-    <table></table>
-    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-    <script src="javascript/main.js"></script>
-  </body>
-</html>
+<h1>1ª División</h1>
+<table>
+  <% matches.forEach( match => { %>
+    <tr>
+      <td><%= match.homeTeamName %></td>
+      <td><%= match.awayTeamName %></td>
+      <td><%= match.date %></td>
+    </tr>
+  <% }) %>
+</table>
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+<script src="javascript/main.js"></script>

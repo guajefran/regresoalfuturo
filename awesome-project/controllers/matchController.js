@@ -23,7 +23,7 @@ module.exports = {
           error: err
         })
       }
-      if (!team) {
+      if (!match) {
         return res.status(404).json({
           message: 'No such match'
         })
@@ -56,6 +56,10 @@ module.exports = {
       }
       return res.json(matches)
     }).sort({date: 1}).limit(10)
+  },
+
+  head2head: function(req, res){
+
   },
 
   update: function (req, res) {
