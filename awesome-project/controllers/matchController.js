@@ -55,7 +55,7 @@ module.exports = {
         })
       }
       return res.json(matches)
-    })
+    }).sort({date: 1}).limit(10)
   },
 
   update: function (req, res) {
