@@ -1,3 +1,4 @@
+
 const express      = require('express');
 const path         = require('path');
 const favicon      = require('serve-favicon');
@@ -34,6 +35,14 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(layouts);
+
+app.use(passport.initialize());
+app.use(passport.session());
+
+app.use('/', authRoutes);
+app.use('/', index);
+
+// signup
 app.use(session({
   secret: 'ironfundingdev',
   resave: false,
@@ -64,12 +73,10 @@ passport.use('local-signup', new LocalStrategy(
   { passReqToCallback: true },
   (req, username, password, next) => {
     // To avoid race conditions
-    console.log('llega');
     process.nextTick(() => {
         User.findOne({
             'username': username
         }, (err, user) => {
-            console.log(err);
             if (err){ return next(err); }
 
             if (user) {
@@ -104,9 +111,7 @@ app.locals.title = 'ALMANAC - Back to the future';
 
 
 passport.use('local-login', new LocalStrategy((username, password, next) => {
-
   User.findOne({ username }, (err, user) => {
-
     if (err) {
       return next(err)
     }
