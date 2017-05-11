@@ -5,8 +5,13 @@ const session = require('express-session')
 const passport = require('passport')
 const logger = require('morgan')
 const layouts = require('express-ejs-layouts')
+const config = require('./config.js')
+const mongoose = require('mongoose')
 
-module.exports = function(app, config){
+module.exports = function(app){
+
+  mongoose.connect(config.db)
+
   app.set('views', config.rootPath+'views')
   app.set('view engine', 'ejs')
   app.use(logger('dev'))
@@ -22,4 +27,13 @@ module.exports = function(app, config){
   }))
   app.use(passport.initialize())
   app.use(passport.session())
+
+  app.use(function (req, res, next) {
+      res.locals.user = req.user;
+      res.locals.title = 'ALMANAC - Back to the future'
+      next();
+  });
 }
+
+// // app.use('/', authRoutes)
+// app.use('/', index)
