@@ -1,6 +1,7 @@
 html{
   height: 100%;
 }
+
 body {
   font: 18px "Lucida Grande", Helvetica, Arial, sans-serif;
   margin: 0;
@@ -10,6 +11,7 @@ body {
 a {
   color: #00B7FF;
 }
+
 h1{
   color: #fff;
   text-align: center;
@@ -65,4 +67,10 @@ h1{
 }
 .boxsignup{
   height: 550px;
+}
+
+@media(max-width: 500px) {
+  nav {
+    background: red;
+  }
 }

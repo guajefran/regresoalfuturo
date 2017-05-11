@@ -3,6 +3,7 @@ const LocalStrategy = require("passport-local").Strategy
 const flash = require("connect-flash")
 const FbStrategy = require('passport-facebook').Strategy
 const GoogleStrategy = require("passport-google-oauth").OAuth2Strategy
+const bcrypt = require('bcrypt')
 const User = require('../models/User')
 const dotenv = require ("dotenv").load()
 

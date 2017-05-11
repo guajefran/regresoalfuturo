@@ -19,7 +19,7 @@ authRoutes.post('/signup', passport.authenticate('local-signup', {
   failureRedirect : '/signup'
 }))
 
-authRoutes.get('/login', (req, res) => {
+authRoutes.get('/login',ensureLogin.ensureLoggedOut('/'), (req, res) => {
     res.render('auth/login')
 })
 
