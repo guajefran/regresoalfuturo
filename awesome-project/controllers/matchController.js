@@ -46,6 +46,18 @@ module.exports = {
     })
   },
 
+  next: function(req, res){
+    Match.find({ status: {$ne: 'FINISHED'}}, function(err, matches){
+      if (err) {
+        return res.status(500).json({
+          message: 'Error when getting match.',
+          error: err
+        })
+      }
+      return res.json(matches)
+    })
+  },
+
   update: function (req, res) {
     var id = req.params.id
     Match.findOne({_id: id}, function (err, match) {
