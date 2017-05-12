@@ -3,7 +3,7 @@ const router  = express.Router();
 const Match = require('../models/Match.js')
 
 router.get('/', (req, res, next) => {
-  Match.find({}, (err, matches) => {
+  Match.find({status: {$ne: 'FINISHED'}}, (err, matches) => {
     if (err) { return next(err) }
     return res.render('index', {matches: matches});
   }).sort({date: 1}).limit(10)
@@ -11,11 +11,12 @@ router.get('/', (req, res, next) => {
 
 function getLastMatchesWithIds(id1,id2){
   return Match.find({
+    status: 'FINISHED',
     $or:[
       {'homeTeam': id1},
       {'awayTeam': id2}
     ]
-  }).sort({date:1}).limit(5)
+  }).sort({date:-1}).limit(5)
 }
 
 
