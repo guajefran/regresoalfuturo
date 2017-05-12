@@ -18,6 +18,15 @@ function getLastMatchesWithIds(id1,id2){
     ]
   }).sort({date:-1}).limit(5)
 }
+function getLastCommonMatchesWithIds(id1, id2){
+  return Match.find({
+    status: 'FINISHED',
+    $or:[
+      {'homeTeam': id1, 'awayTeam': id2},
+      {'homeTeam': id2, 'awayTeam': id1}
+    ]
+  }).sort({date:-1}).limit(5)
+}
 
 
 router.get('/head2head/', (req, res, next) =>{
@@ -27,17 +36,16 @@ router.get('/head2head/', (req, res, next) =>{
   Promise.all([
     getLastMatchesWithIds(homeTeam,homeTeam),
     getLastMatchesWithIds(awayTeam,awayTeam),
-    getLastMatchesWithIds(homeTeam,awayTeam),
-    getLastMatchesWithIds(awayTeam,homeTeam),
+    getLastCommonMatchesWithIds(homeTeam,awayTeam)
   ]).then(resultArray =>{
     const result = {
       localLast5: resultArray[0],
       visitantLast5: resultArray[1],
-      commonMatches: [...resultArray[2],...resultArray[3]]
+      commonMatches: resultArray[2]
+      // commonMatches: [...resultArray[2],...resultArray[3]]
     }
     res.render('head2head', result)
   })
-
 })
 
 module.exports = router;
