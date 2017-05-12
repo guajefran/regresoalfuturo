@@ -5,9 +5,13 @@ const bcrypt = require("bcrypt")
 const bcryptSalt = 10
 const ensureLogin = require("connect-ensure-login")
 const User = require("../models/User")
+const Match = require("../models/Match")
 
 authRoutes.get("/matches", ensureLogin.ensureLoggedIn(), (req, res) => {
-  res.render("matches", { user: req.user })
+  Match.find({status: {$ne: 'FINISHED'}}, (err, matches) => {
+    if (err) { return next(err) }
+    return res.render('matches', {matches: matches, user: req.user});
+  }).sort({date: 1}).limit(10)
 })
 
 authRoutes.get("/signup", (req, res, next) => {

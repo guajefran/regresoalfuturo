@@ -11,7 +11,15 @@
 
     </div>
     <h1>$@ division</h1>
-    <table class="matchweek"></table>
+    <table class="matchweek">
+      <% matches.forEach( match => { %>
+        <tr class="match" data-hometeam="<%= match.homeTeam %>" data-awayteam="<%= match.awayTeam%>">
+          <td><%= match.homeTeamName %></td>
+          <td><%= match.awayTeamName %></td>
+          <td><%= match.date %></td>
+        </tr>
+      <% }) %>
+      </table>
     <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
     <script src="javascript/main.js"></script>
   </body>
