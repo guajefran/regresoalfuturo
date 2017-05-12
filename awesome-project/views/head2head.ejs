@@ -3,14 +3,14 @@
     <th>Local</th>
     <th>Visitante</th>
     <th>Resultado</th>
-    <th>Fecha</th>
+
   </tr>
   <% localLast5.forEach(function(m){ %>
     <tr>
       <td><%= m.homeTeamName %></td>
       <td><%= m.awayTeamName %></td>
       <td><%= m.goalsHomeTeam %> - <%= m.goalsAwayTeam %></td>
-      <td><%= m.date %></td>
+
     </tr>
   <% }) %>
 </table>
@@ -19,14 +19,14 @@
     <th>Local</th>
     <th>Visitante</th>
     <th>Resultado</th>
-    <th>Fecha</th>
+
   </tr>
   <% visitantLast5.forEach(function(m){ %>
     <tr>
       <td><%= m.homeTeamName %></td>
       <td><%= m.awayTeamName %></td>
       <td><%= m.goalsHomeTeam %> - <%= m.goalsAwayTeam %></td>
-      <td><%= m.date %></td>
+
     </tr>
   <% }) %>
 </table>
@@ -35,14 +35,14 @@
     <th>Local</th>
     <th>Visitante</th>
     <th>Resultado</th>
-    <th>Fecha</th>
+
   </tr>
   <% commonMatches.forEach(function(m){ %>
     <tr>
       <td><%= m.homeTeamName %></td>
       <td><%= m.awayTeamName %></td>
       <td><%= m.goalsHomeTeam %> - <%= m.goalsAwayTeam %></td>
-      <td><%= m.date %></td>
+      
     </tr>
   <% }) %>
 </table>

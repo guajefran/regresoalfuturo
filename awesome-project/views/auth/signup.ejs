@@ -3,34 +3,49 @@
 <div class="corps">
 
   <div class="col-sm-12 boxlogin boxsignup" >
-
+<br><br>
 <form action="/signup" method="post" id="form-container">
-  <label for="username">Username</label><br><br>
-  <input class="boxtext" id="username" type="text" name="username" placeholder="JonSnow">
-  <br><br>
-  <label for="mail">Mail</label><br><br>
-  <input class="boxtext" id="mail" type="mail" name="email" placeholder="mail">
-  <br><br>
-  <label for="password">Password</label><br><br>
-  <input class="boxtext" id="password" type="password" name="password" placeholder="Your password">
+  <div class="field">
+    <label for="username">USERNAME</label><br><br>
+    <input class="boxtext" id="username" type="text" name="username" placeholder="JonSnow">
+  </div>
+  <div class="field">
+    <label for="mail">EMAIL</label><br><br>
+    <input class="boxtext" id="mail" type="mail" name="email" placeholder="mail">
+  </div>
+  <div class="field">
+    <label for="password">PASSWORD</label><br><br>
+    <input class="boxtext" id="password" type="password" name="password" placeholder="Your password">
+  </div>
 
   <% if (typeof message !== "undefined") { %>
     <div class="error-message"><%= message %></div>
   <% } %>
-  <br><br>
 
-  <button><a href="/login">Create account</a></button>
-  <br><br>
-  <a href="/auth/facebook">Login With Facebook</a>
-  <div><br><br>
-    <a href="/auth/google">Login With Google</a>
+  <div id="create">
+    <button><a href="/login">Create account</a></button>
   </div>
-  <br>
 
-  <p class="account-message">
-    Do you already have an account?
-    <a href="/login">Login</a>
-  </p>
+  <div class="login-container">
+    <div class="login-link">
+      <div>
+        <span>login with</span>
+      </div>
+      <a class="fbbox" href="/auth/facebook"><img class="boxlogos" src= "/images/facebook.png"></a>
+    </div>
+    <div class="login-link">
+      <div>
+        <span>login with</span>
+      </div>
+      <a class="googlebox" href="/auth/google"><img class="boxlogos" src= "/images/google.png"></a>
+    </div>
+  </div>
+  <div class="check-login">
+    <p class="account-message">
+      do you already have an account?
+      <a class="click" href="/login"> login</a>
+    </p>
+  </div>
 </form>
 <div class="boxopacity"></div>
 </div>

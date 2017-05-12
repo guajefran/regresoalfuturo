@@ -1,9 +1,33 @@
 html{
   height: 100%;
 }
+@font-face {
+    font-family: "future";
+    src: url(/text/BTTF.ttf) format("truetype");
+}
+.headermatch{
+   width: 100%;
+   height: 350px;
+   border: 1px solid red;
+   margin-top: 10px;
+   background-image: url(/images/banner.png);
+   background-repeat: no-repeat;
+   background-size: cover;
+}
+.matchweek{
+  margin: auto;
+  font-family: monospace;
+  font-size: 20px;
+}
+.matchweek td {
+  padding: 5px;
+  border-top: 3px solid #000;
+  border-bottom: 3px solid #000;
+  text-align: center;
 
+}
 body {
-  font: 18px "Lucida Grande", Helvetica, Arial, sans-serif;
+  font: 18px;
   margin: 0;
   height: 100%;
 }
@@ -13,11 +37,55 @@ a {
 }
 
 h1{
-  color: #fff;
+  color: #000;
   text-align: center;
+  font-family: "future";
 }
-.corps{
-  background-image: url(/images/bengala.jpg);
+
+
+.login{
+  color: #000;
+  font-size: 16px;
+  float: right;
+  margin-top: 20px;
+  margin-right: 10px
+}
+
+.fbbox{
+
+  color: black;
+}
+.googlebox{
+
+  color: black;
+}
+.boxlogos{
+  width: 40px;
+  height: 40px;
+  overflow: auto;
+
+}
+.logo{
+  float: left;
+  margin: 0 0 0 10px;
+  font-size: 25px;
+  color: #000;
+}
+
+
+
+
+nav {
+height: 55px;
+list-style:none;
+overflow:hidden;
+margin-right: 15px;
+font-family: future;
+
+}
+.back{
+  border-top: 3px solid #000;
+  background-image: url(/images/indexback.jpg);
   background-position: center center;
   background-repeat: no-repeat;
   background-attachment: fixed;
@@ -27,17 +95,35 @@ h1{
   height: 100%;
   padding-top: 50px;
 }
+.corps{
+  border-top: 3px solid #000;
+  background-image: url(/images/back.jpg);
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+  background-color:#000;
+  width: 100%;
+  height: 100%;
+  padding-top: 50px;
+}
+#form-container{
+  padding-top: 30px;
+}
 
 .boxlogin{
   border: 2px solid #000 ;
   width: 400px;
-  height: 360px;
+  height: 350px;
   display: block;
   border-radius: 10%;
   text-align: center;
   position: relative;
   margin: 0 auto;
+  padding-top: 10PX;
   overflow: hidden;
+  font-family: future;
+  z-index: 2;
 
 }
 .boxlogin form{
@@ -52,7 +138,7 @@ h1{
 }
 .boxopacity{
   background-color: #fff;
-  opacity: 0.5;
+  opacity: 0.8;
   float: left;
   width: 100%;
   height: 100%;
@@ -66,11 +152,47 @@ h1{
   width: 70%;
 }
 .boxsignup{
-  height: 550px;
+  height: 530px;
 }
 
 @media(max-width: 500px) {
   nav {
     background: red;
   }
+}
+
+.field {
+  margin: 30px 0;
+}
+
+.login-container {
+  width: 90%;
+  height: 50px;
+  margin: 30px auto;
+}
+
+.login-link div {
+  box-sizing: border-box;
+  height: 40px;
+  padding: 10px;
+  float: left;
+}
+
+.login-link a {
+  display: inline-block;
+  float: left;
+}
+
+.check-login {
+  clear: left;
+}
+
+.click{
+  margin-top: 10px;
+}
+.back a{
+  color: #fff;
+  font-family: "future";
+  font-size: 30px;
+  margin:  20% ;
 }

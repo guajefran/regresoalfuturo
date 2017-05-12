@@ -3,29 +3,27 @@
   <div class="col-sm-12 boxlogin" >
 
     <form action="/login" method="POST">
-      <div>
-        <br>
-        <label for="username">Username:</label><br><br>
+      <div class="field">
+        <label for="username">username:</label><br><br>
         <input class="boxtext" type="text" name="username">
       </div>
-      <br>
-      <div>
-        <label for="password">Password:</label><br><br>
+      <div class="field">
+        <label for="password">password:</label><br><br>
         <input class="boxtext" type="password" name="password">
       </div>
       <% if (typeof message != "undefined") { %>
       <div class="error-message"><%= message %></div>
       <% } %>
-      <div><br><br>
+      <div id="create">
       <input type="submit" value="Log In">
       </div>
-      <br>
-      <p class="account-message">
-        You do not have an account?
-        <br>
+      <div class="check-login">
+        <p class="account-message">
+          You do not have an account?
+          <a class="click" href="/signup">Create</a>
+        </p>
+      </div>
+    </form>
 
-        <a href="/signup">Create</a>
-      </form>
-      <div class="boxopacity"></div>
-    </div>
+    <div class="boxopacity"></div>
 </div>

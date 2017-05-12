@@ -4,7 +4,7 @@ module.exports = [{
     "matchday": "1",
     "goalsHomeTeam": "1",
     "goalsAwayTeam": "1",
-    "homeTeamName": "Málaga CF",
+    "homeTeamName": "malaga cf",
     "awayTeamName": "CA Osasuna",
     "homeTeam": "",
     "awayTeam": ""
@@ -126,7 +126,7 @@ module.exports = [{
     "goalsHomeTeam": "2",
     "goalsAwayTeam": "2",
     "homeTeamName": "RCD Espanyol",
-    "awayTeamName": "Málaga CF",
+    "awayTeamName": "malaga cf",
     "homeTeam": "",
     "awayTeam": ""
   },
@@ -257,7 +257,7 @@ module.exports = [{
     "matchday": "3",
     "goalsHomeTeam": "0",
     "goalsAwayTeam": "2",
-    "homeTeamName": "Málaga CF",
+    "homeTeamName": "malaga cf",
     "awayTeamName": "Villarreal CF",
     "homeTeam": "",
     "awayTeam": ""
@@ -379,7 +379,7 @@ module.exports = [{
     "goalsHomeTeam": "1",
     "goalsAwayTeam": "0",
     "homeTeamName": "UD Las Palmas",
-    "awayTeamName": "Málaga CF",
+    "awayTeamName": "malaga cf",
     "homeTeam": "",
     "awayTeam": ""
   },
@@ -444,7 +444,7 @@ module.exports = [{
     "matchday": "5",
     "goalsHomeTeam": "2",
     "goalsAwayTeam": "1",
-    "homeTeamName": "Málaga CF",
+    "homeTeamName": "malaga cf",
     "awayTeamName": "SD Eibar",
     "homeTeam": "",
     "awayTeam": ""
@@ -555,7 +555,7 @@ module.exports = [{
     "goalsHomeTeam": "1",
     "goalsAwayTeam": "0",
     "homeTeamName": "Real Betis",
-    "awayTeamName": "Málaga CF",
+    "awayTeamName": "malaga cf",
     "homeTeam": "",
     "awayTeam": ""
   },
@@ -741,7 +741,7 @@ module.exports = [{
     "matchday": "7",
     "goalsHomeTeam": "2",
     "goalsAwayTeam": "1",
-    "homeTeamName": "Málaga CF",
+    "homeTeamName": "malaga cf",
     "awayTeamName": "Athletic Club",
     "homeTeam": "",
     "awayTeam": ""
@@ -830,7 +830,7 @@ module.exports = [{
     "goalsHomeTeam": "1",
     "goalsAwayTeam": "1",
     "homeTeamName": "Deportivo Alavés",
-    "awayTeamName": "Málaga CF",
+    "awayTeamName": "malaga cf",
     "homeTeam": "",
     "awayTeam": ""
   },
@@ -961,7 +961,7 @@ module.exports = [{
     "matchday": "9",
     "goalsHomeTeam": "4",
     "goalsAwayTeam": "0",
-    "homeTeamName": "Málaga CF",
+    "homeTeamName": "malaga cf",
     "awayTeamName": "CD Leganes",
     "homeTeam": "",
     "awayTeam": ""
@@ -1028,7 +1028,7 @@ module.exports = [{
     "goalsHomeTeam": "4",
     "goalsAwayTeam": "2",
     "homeTeamName": "Club Atlético de Madrid",
-    "awayTeamName": "Málaga CF",
+    "awayTeamName": "malaga cf",
     "homeTeam": "",
     "awayTeam": ""
   },
@@ -1104,7 +1104,7 @@ module.exports = [{
     "matchday": "11",
     "goalsHomeTeam": "3",
     "goalsAwayTeam": "2",
-    "homeTeamName": "Málaga CF",
+    "homeTeamName": "malaga cf",
     "awayTeamName": "Sporting Gijón",
     "homeTeam": "",
     "awayTeam": ""
@@ -1237,7 +1237,7 @@ module.exports = [{
     "goalsHomeTeam": "0",
     "goalsAwayTeam": "0",
     "homeTeamName": "FC Barcelona",
-    "awayTeamName": "Málaga CF",
+    "awayTeamName": "malaga cf",
     "homeTeam": "",
     "awayTeam": ""
   },
@@ -1335,7 +1335,7 @@ module.exports = [{
     "matchday": "13",
     "goalsHomeTeam": "4",
     "goalsAwayTeam": "3",
-    "homeTeamName": "Málaga CF",
+    "homeTeamName": "malaga cf",
     "awayTeamName": "RC Deportivo La Coruna",
     "homeTeam": "",
     "awayTeam": ""
@@ -1523,7 +1523,7 @@ module.exports = [{
     "goalsHomeTeam": "2",
     "goalsAwayTeam": "2",
     "homeTeamName": "Valencia CF",
-    "awayTeamName": "Málaga CF",
+    "awayTeamName": "malaga cf",
     "homeTeam": "",
     "awayTeam": ""
   },
@@ -1544,7 +1544,7 @@ module.exports = [{
     "matchday": "15",
     "goalsHomeTeam": "1",
     "goalsAwayTeam": "1",
-    "homeTeamName": "Málaga CF",
+    "homeTeamName": "malaga cf",
     "awayTeamName": "Granada CF",
     "homeTeam": "",
     "awayTeam": ""
@@ -1699,7 +1699,7 @@ module.exports = [{
     "goalsHomeTeam": "4",
     "goalsAwayTeam": "1",
     "homeTeamName": "Sevilla FC",
-    "awayTeamName": "Málaga CF",
+    "awayTeamName": "malaga cf",
     "homeTeam": "",
     "awayTeam": ""
   },
@@ -1831,7 +1831,7 @@ module.exports = [{
     "goalsHomeTeam": "3",
     "goalsAwayTeam": "1",
     "homeTeamName": "RC Celta de Vigo",
-    "awayTeamName": "Málaga CF",
+    "awayTeamName": "malaga cf",
     "homeTeam": "",
     "awayTeam": ""
   },
@@ -1962,7 +1962,7 @@ module.exports = [{
     "matchday": "18",
     "goalsHomeTeam": "0",
     "goalsAwayTeam": "2",
-    "homeTeamName": "Málaga CF",
+    "homeTeamName": "malaga cf",
     "awayTeamName": "Real Sociedad de Fútbol",
     "homeTeam": "",
     "awayTeam": ""
@@ -1996,7 +1996,7 @@ module.exports = [{
     "goalsHomeTeam": "2",
     "goalsAwayTeam": "1",
     "homeTeamName": "Real Madrid CF",
-    "awayTeamName": "Málaga CF",
+    "awayTeamName": "malaga cf",
     "homeTeam": "",
     "awayTeam": ""
   },
@@ -2084,7 +2084,7 @@ module.exports = [{
     "goalsHomeTeam": "1",
     "goalsAwayTeam": "1",
     "homeTeamName": "CA Osasuna",
-    "awayTeamName": "Málaga CF",
+    "awayTeamName": "malaga cf",
     "homeTeam": "",
     "awayTeam": ""
   },
@@ -2193,7 +2193,7 @@ module.exports = [{
     "matchday": "21",
     "goalsHomeTeam": "0",
     "goalsAwayTeam": "1",
-    "homeTeamName": "Málaga CF",
+    "homeTeamName": "malaga cf",
     "awayTeamName": "RCD Espanyol",
     "homeTeam": "",
     "awayTeam": ""
@@ -2337,7 +2337,7 @@ module.exports = [{
     "goalsHomeTeam": "1",
     "goalsAwayTeam": "1",
     "homeTeamName": "Villarreal CF",
-    "awayTeamName": "Málaga CF",
+    "awayTeamName": "malaga cf",
     "homeTeam": "",
     "awayTeam": ""
   },
@@ -2490,7 +2490,7 @@ module.exports = [{
     "matchday": "23",
     "goalsHomeTeam": "2",
     "goalsAwayTeam": "1",
-    "homeTeamName": "Málaga CF",
+    "homeTeamName": "malaga cf",
     "awayTeamName": "UD Las Palmas",
     "homeTeam": "",
     "awayTeam": ""
@@ -2557,7 +2557,7 @@ module.exports = [{
     "goalsHomeTeam": "3",
     "goalsAwayTeam": "0",
     "homeTeamName": "SD Eibar",
-    "awayTeamName": "Málaga CF",
+    "awayTeamName": "malaga cf",
     "homeTeam": "",
     "awayTeam": ""
   },
@@ -2633,7 +2633,7 @@ module.exports = [{
     "matchday": "25",
     "goalsHomeTeam": "1",
     "goalsAwayTeam": "2",
-    "homeTeamName": "Málaga CF",
+    "homeTeamName": "malaga cf",
     "awayTeamName": "Real Betis",
     "homeTeam": "",
     "awayTeam": ""
@@ -2821,7 +2821,7 @@ module.exports = [{
     "goalsHomeTeam": "1",
     "goalsAwayTeam": "0",
     "homeTeamName": "Athletic Club",
-    "awayTeamName": "Málaga CF",
+    "awayTeamName": "malaga cf",
     "homeTeam": "",
     "awayTeam": ""
   },
@@ -2886,7 +2886,7 @@ module.exports = [{
     "matchday": "27",
     "goalsHomeTeam": "1",
     "goalsAwayTeam": "2",
-    "homeTeamName": "Málaga CF",
+    "homeTeamName": "malaga cf",
     "awayTeamName": "Deportivo Alavés",
     "homeTeam": "",
     "awayTeam": ""
@@ -3019,7 +3019,7 @@ module.exports = [{
     "goalsHomeTeam": "0",
     "goalsAwayTeam": "0",
     "homeTeamName": "CD Leganes",
-    "awayTeamName": "Málaga CF",
+    "awayTeamName": "malaga cf",
     "homeTeam": "",
     "awayTeam": ""
   },
@@ -3117,7 +3117,7 @@ module.exports = [{
     "matchday": "29",
     "goalsHomeTeam": "0",
     "goalsAwayTeam": "2",
-    "homeTeamName": "Málaga CF",
+    "homeTeamName": "malaga cf",
     "awayTeamName": "Club Atlético de Madrid",
     "homeTeam": "",
     "awayTeam": ""
@@ -3250,7 +3250,7 @@ module.exports = [{
     "goalsHomeTeam": "0",
     "goalsAwayTeam": "1",
     "homeTeamName": "Sporting Gijón",
-    "awayTeamName": "Málaga CF",
+    "awayTeamName": "malaga cf",
     "homeTeam": "",
     "awayTeam": ""
   },
@@ -3337,7 +3337,7 @@ module.exports = [{
     "matchday": "31",
     "goalsHomeTeam": "2",
     "goalsAwayTeam": "0",
-    "homeTeamName": "Málaga CF",
+    "homeTeamName": "malaga cf",
     "awayTeamName": "FC Barcelona",
     "homeTeam": "",
     "awayTeam": ""
@@ -3415,7 +3415,7 @@ module.exports = [{
     "goalsHomeTeam": "2",
     "goalsAwayTeam": "0",
     "homeTeamName": "RC Deportivo La Coruna",
-    "awayTeamName": "Málaga CF",
+    "awayTeamName": "malaga cf",
     "homeTeam": "",
     "awayTeam": ""
   },
@@ -3524,7 +3524,7 @@ module.exports = [{
     "matchday": "33",
     "goalsHomeTeam": "2",
     "goalsAwayTeam": "0",
-    "homeTeamName": "Málaga CF",
+    "homeTeamName": "malaga cf",
     "awayTeamName": "Valencia CF",
     "homeTeam": "",
     "awayTeam": ""
@@ -3635,7 +3635,7 @@ module.exports = [{
     "goalsHomeTeam": "0",
     "goalsAwayTeam": "2",
     "homeTeamName": "Granada CF",
-    "awayTeamName": "Málaga CF",
+    "awayTeamName": "malaga cf",
     "homeTeam": "",
     "awayTeam": ""
   },
@@ -3832,7 +3832,7 @@ module.exports = [{
     "matchday": "35",
     "goalsHomeTeam": "4",
     "goalsAwayTeam": "2",
-    "homeTeamName": "Málaga CF",
+    "homeTeamName": "malaga cf",
     "awayTeamName": "Sevilla FC",
     "homeTeam": "",
     "awayTeam": ""
@@ -3931,7 +3931,7 @@ module.exports = [{
     "matchday": "36",
     "goalsHomeTeam": "3",
     "goalsAwayTeam": "0",
-    "homeTeamName": "Málaga CF",
+    "homeTeamName": "malaga cf",
     "awayTeamName": "RC Celta de Vigo",
     "homeTeam": "",
     "awayTeam": ""
@@ -4042,7 +4042,7 @@ module.exports = [{
     "goalsHomeTeam": "null",
     "goalsAwayTeam": "null",
     "homeTeamName": "Real Sociedad de Fútbol",
-    "awayTeamName": "Málaga CF",
+    "awayTeamName": "malaga cf",
     "homeTeam": "",
     "awayTeam": ""
   },
@@ -4129,7 +4129,7 @@ module.exports = [{
     "matchday": "38",
     "goalsHomeTeam": "null",
     "goalsAwayTeam": "null",
-    "homeTeamName": "Málaga CF",
+    "homeTeamName": "malaga cf",
     "awayTeamName": "Real Madrid CF",
     "homeTeam": "",
     "awayTeam": ""
