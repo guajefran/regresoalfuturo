@@ -78,4 +78,10 @@ $(function() {
   //     })
   // }
   // var api = new API()
+  $('.match').on('click', function(m){
+    console.log($(this).data())
+    var homeTeam = 'hometeam='+$(this).data('hometeam')
+    var awayTeam = 'awayteam='+$(this).data('awayteam')
+    window.location = 'head2head?'+homeTeam+'&'+awayTeam
+  })
 })

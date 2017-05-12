@@ -1,7 +1,7 @@
 <h1>1ª División</h1>
 <table>
   <% matches.forEach( match => { %>
-    <tr>
+    <tr class="match" data-hometeam="<%= match.homeTeam %>" data-awayteam="<%= match.awayTeam%>">
       <td><%= match.homeTeamName %></td>
       <td><%= match.awayTeamName %></td>
       <td><%= match.date %></td>
