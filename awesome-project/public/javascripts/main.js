@@ -59,25 +59,29 @@ $(function() {
         })
       })
   }
-  API.prototype.getNextMatches = function(){
-    $.ajax({
-      context: this,
-      url: '/match/nextMatches'
-    })
-      .done(function(data){
-        var matches = data
-        var matchesDiv  = $('table')
-        matches.forEach(function(match){
-          var matchFrame = $('<tr>')
-          matchFrame.append($('<td>').text(match.homeTeamName))
-          matchFrame.append($('<td>').text(match.awayTeamName))
-          matchFrame.append($('<td>').text(match.date))
-          matchesDiv.append(matchFrame)
-        })
-      })
-  }
-  var api = new API()
-  api.getNextMatches()
-  // api.getTeams()
-  // api.getMatches()
+  // API.prototype.getNextMatches = function(){
+  //   $.ajax({
+  //     context: this,
+  //     url: '/match/nextMatches'
+  //   })
+  //     .done(function(data){
+  //       var matches = data
+  //       var matchesDiv  = $('table')
+  //       matches.forEach(function(match){
+  //         var matchFrame = $('<tr>')
+  //         matchFrame.append($('<td>').text(match.homeTeamName))
+  //         matchFrame.append($('<td>').text(match.awayTeamName))
+  //         matchFrame.append($('<td>').text(match.date))
+  //         matchFrame.append($('<a>').attr('href', '/match'))
+  //         matchesDiv.append(matchFrame)
+  //       })
+  //     })
+  // }
+  // var api = new API()
+  $('.match').on('click', function(m){
+    console.log($(this).data())
+    var homeTeam = 'hometeam='+$(this).data('hometeam')
+    var awayTeam = 'awayteam='+$(this).data('awayteam')
+    window.location = 'head2head?'+homeTeam+'&'+awayTeam
+  })
 })
