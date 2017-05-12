@@ -1,48 +1,75 @@
+<h1><%= localTeam.name %></h1>
+<h1>Vs</h1>
+<h1><%= visitantTeam.name %></h1>
+<%
+localTeam.won = 0
+visitantTeam.won = 0
+function setVictories(team, match){
+  if(match.goalsHomeTeam > match.goalsAwayTeam)
+  team.won += (match.homeTeamName == team.name)?1:0
+  else if(match.goalsHomeTeam < match.goalsAwayTeam)
+  team.won += (match.awayTeamName == team.name)?1:0
+}
+
+function victoryPercentage(team){
+  return team.won/5*100
+}
+
+
+%>
 <table class="hometeam">
   <tr>
     <th>Local</th>
     <th>Visitante</th>
     <th>Resultado</th>
-
   </tr>
   <% localLast5.forEach(function(m){ %>
     <tr>
       <td><%= m.homeTeamName %></td>
       <td><%= m.awayTeamName %></td>
       <td><%= m.goalsHomeTeam %> - <%= m.goalsAwayTeam %></td>
-
     </tr>
+    <% setVictories(localTeam, m) %>
   <% }) %>
+  <h1><%= victoryPercentage(localTeam) %>%</h1>
 </table>
 <table class="awayteam">
   <tr>
     <th>Local</th>
     <th>Visitante</th>
     <th>Resultado</th>
-
   </tr>
   <% visitantLast5.forEach(function(m){ %>
     <tr>
       <td><%= m.homeTeamName %></td>
       <td><%= m.awayTeamName %></td>
       <td><%= m.goalsHomeTeam %> - <%= m.goalsAwayTeam %></td>
-
     </tr>
+    <% setVictories(visitantTeam, m) %>
   <% }) %>
+  <h1><%= victoryPercentage(visitantTeam) %>%</h1>
 </table>
 <table class="head2head">
   <tr>
     <th>Local</th>
     <th>Visitante</th>
     <th>Resultado</th>
-
   </tr>
   <% commonMatches.forEach(function(m){ %>
     <tr>
       <td><%= m.homeTeamName %></td>
       <td><%= m.awayTeamName %></td>
       <td><%= m.goalsHomeTeam %> - <%= m.goalsAwayTeam %></td>
-      
     </tr>
   <% }) %>
 </table>
+<%
+var totalPercentage = victoryPercentage(localTeam)+victoryPercentage(visitantTeam)
+
+%>
+<%= (victoryPercentage(localTeam)/totalPercentage*100).toFixed(2) %>%
+<%= (victoryPercentage(visitantTeam)/totalPercentage*100).toFixed(2) %>%
+<h1><%= localTeam.name+' ' %></h1>
+<h1>Vs</h1>
+<h1><%= visitantTeam.name %></h1>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/1.0.2/Chart.min.js"></script>
