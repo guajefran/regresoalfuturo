@@ -1,5 +1,5 @@
 module.exports = [
-  { "name": "Málaga CF",
+  { "name": "malaga cf",
   "shortName": "Málaga",
   "imgUrl": "http://upload.wikimedia.org/wikipedia/de/e/e8/FC_Málaga.svg",
   "code": "MAL",

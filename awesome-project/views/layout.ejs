@@ -7,12 +7,15 @@
   </head>
   <body>
     <nav>
+      <a class="logo" href="/">BACK<<br>&ALMANAC</a>
       <% if(!user){ %>
 
-        <li><a class="login"href="/login">Login</a></li>
-        <li><a class="login"href="/signup">Signup</a></li>
+        <li><a class="login"href="/signup">signup</a></li>
+        <li><a class="login"href="/login"> login</a></li>
+
+
       <% }else{ %>
-        <li><a class="login"href="/logout">Logout</a></li>
+        <li><a class="login"href="/logout">logout</a></li>
 
       <% } %>
     </nav>
